@@ -1,0 +1,45 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card bg-dark border border-dark">
+                <div class="card-body">
+                    <form action="/links/edit/{{link.id}}" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="date" name="date" id="current_date" class="form-control bg-dark text-light">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="type" class="form-control bg-dark text-light" placeholder="Tipo" value="{{link.type}}" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="title" class="form-control bg-dark text-light" placeholder="Título" value="{{link.title}}" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="impact" class="form-control bg-dark text-light">
+                                <option select>¿Impacto?</option>
+                                <option value="1">Informativo</option>
+                                <option value="2">Positivo</option>
+                                <option value="3">Negativo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" name="url" class="form-control bg-dark text-light" placeholder="URL" value="{{link.url}}" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" rows="2" class="form-control bg-dark text-light"
+                                placeholder="Descripción" required>{{link.description}}</textarea>
+                        </div>
+                        <div class="form-group" id="news_file">
+                            <label for="file_news">Archivo</label>
+                            <input type="file" class="form-control-file" id="file_news" name="file_news">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
