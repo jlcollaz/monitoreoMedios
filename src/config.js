@@ -7,10 +7,10 @@ config();
 export default {
   database: {
     connectionLimit: 10,
-    host: process.env.DATABASE_HOST || "us-cdbr-east-04.cleardb.com",
-    user: process.env.DATABASE_USER || "b239329977702e",
-    password: process.env.DATABASE_PASSWORD || "94e963d4",
-    database: process.env.DATABASE_NAME || "heroku_84279390f2c6bba",
+    host: process.env.DATABASE_HOST || "localhost",
+    user: process.env.DATABASE_USER || "test_mm",
+    password: process.env.DATABASE_PASSWORD || "Test_mm12345@",
+    database: process.env.DATABASE_NAME || "db_MM",
   },
   port: process.env.PORT || 4000,
 };
