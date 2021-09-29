@@ -71,3 +71,20 @@ more-padding {
 .btn-start {
   background-color: #cd9a03;
 }
+
+.list-group li {
+  border: 15px solid #17283b;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+
+
+.cardcolor-margin{
+  margin: 15px 0 15px 0;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 25px;
+  margin-left: 25px;
+}
+

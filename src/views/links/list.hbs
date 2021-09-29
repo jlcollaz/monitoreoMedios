@@ -2,24 +2,22 @@
     <div class="container p-4">
         <div class="row">
             {{#each links}}
-            <div class="col-md-3">
-                <div class="card text-center cardcolor text-light">
-                    <div class="card-body">
-                        <a href="{{url}}" target="_blank" class="text-light">
-                            <h5 class="card-title text-uppercase">
-                                {{title}}
-                            </h5>
-                        </a>
-                        <p class="text-muted">
-                            {{timeago date}}
-                        </p>
-                        <a class="btn btn-erase" href="/links/delete/{{id}}" style="color:#fff">
-                            Eliminar
-                        </a>
-                        <a class="btn btn-secondary" href="/links/edit/{{id}}">
-                            Editar
-                        </a>
-                    </div>
+            <div class="col-md-3 card cardcolor cardcolor-margin text-center  text-light">
+                <div class="card-body">
+                    <a href="{{url}}" target="_blank" class="text-light">
+                        <h5 class="card-title text-uppercase">
+                            {{title}}
+                        </h5>
+                    </a>
+                    <p class="text-muted">
+                        {{timeago date}}
+                    </p>
+                    <a onclick="return confirm('¿Desea de eliminar esta noticia?')" class="btn btn-erase" href="/links/delete/{{id}}" style="color:#fff">
+                        Eliminar
+                    </a>
+                    <a class="btn btn-secondary" href="/links/edit/{{id}}">
+                        Editar
+                    </a>
                 </div>
             </div>
             {{else}}
@@ -208,10 +206,6 @@
                 </div>
             </form>
         {{/if}}
-        <div class="row">
-            <div class="col-md-12 list_news">
-                {{>news}}
-            </div>
-        </div>
+        {{>news}}
     </div>
 {{/if}}

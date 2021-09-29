@@ -1,9 +1,9 @@
 <ul class="list-group">
     {{#each links2}}
     <li>
-        <div class="card bg-dark text-light">
+        <div class="cardcolor text-light">
             <div class="row">
-                <div class="col-md-12 text-start">
+                <div class="col-lg-12 text-start">
                     <h4 class="card-title text-uppercase">
                         {{this.title}}
                     </h4>
@@ -17,28 +17,32 @@
                     </p>
                 </div>
                 <div class="col-md-8 text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hola{{this.id}}{{@index}}">
+                    <button type="button" class="btn btn-erase" data-toggle="modal" data-target="#hola{{this.id}}{{@index}}">
                         Más información
                     </button>
                     <div class="modal fade" id="hola{{this.id}}{{@index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content text-dark">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">{{this.title}}</h5>
+                            <div class="modal-header text-left">
+                                <h4 class="modal-title">{{this.title}}</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <h5>{{this.type}}</h5>
-                                <h5>{{this.impact}}</h5>
+                            <div class="modal-body text-left">
+                                <h5 class="text-start"> Tipo de medio: {{this.type}}</h5>
+                                <h5 class="text-start"> Tipo de impacto: {{this.impact}}</h5>
                                 {{#if this.url}}
+                                <h5 class="text-start"> Url: 
                                     <a href="{{this.url}}" target="_blank">Link de noticia</a>
+                                </h5>
                                 {{/if}} 
-                                
                                 {{#if this.file}}
+                                <h5 class="text-start"> Archivo: 
                                     <a href="/files/{{this.file}}" target="_blank">Ver noticia</a>
-                                {{/if}}    
+                                </h5>
+                                {{/if}}   
+                                <h5 class="text-start"> Descripción:</h5> 
                                 <p>{{this.description}}</p>
                             </div>
                         </div>
