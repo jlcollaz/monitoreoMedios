@@ -1,5 +1,5 @@
 <ul class="list-group">
-    {{#each links}}
+    {{#each links2}}
     <li>
         <div class="card bg-dark text-light">
             <div class="row">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-4">
                     <p class="text-muted more-padding">
-                        {{timeago created_at}}
+                        {{timeago this.date}}
                     </p>
                 </div>
                 <div class="col-md-8">
@@ -51,8 +51,10 @@
     {{else}}
     <div class="col-md-4 mx-auto">
         <div class="card card-body text-center bg-dark text-light">
-            <p>No hay noticias</p>
+            <p>No hay noticias en esta fecha, intente cambiando los parámetros de la fecha</p>
         </div>
     </div>
     {{/each}}
 </ul>
+
+

@@ -51,18 +51,118 @@
                         <select name="impact" id="impact" class="form-control bg-dark text-light" onclick="selectImpact('{{data_body.impact}}')">
                             <option >{{data_body.impact}}</option>
                         </select>
+                        <script>
+                            var id_selectImpact = 0
+                            function selectImpact(val){
+                                cadena="";
+                                if(id_selectImpact == 0){
+                                    if(val == 'Todos'){
+                                        cadena += '<option>Informativo</option>';
+                                        cadena += '<option>Positivo</option>';
+                                        cadena += '<option>Negativo</option>';
+                                    }
+                                    else if (val == 'Informativo'){
+                                        cadena += '<option>Positivo</option>';
+                                        cadena += '<option>Negativo</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Positivo'){
+                                        cadena += '<option>Negativo</option>';
+                                        cadena += '<option>Informativo</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Negativo'){
+                                        cadena += '<option>Informativo</option>';
+                                        cadena += '<option>Positivo</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    $("#impact").append(cadena);
+                                    id_selectImpact++;
+                                }
+                            }
+                        </script> 
                     </div>
                     <div class="col-md-2 form-group">
                         <label class="text-light" for="">¿Alcance?</label>
                         <select name="scope" id="scope" class="form-control bg-dark text-light" onclick="selectScope('{{data_body.scope}}')">
                             <option >{{data_body.scope}}</option>
-                        </select>         
+                        </select>  
+                         <script>
+                            var id_selectScope = 0
+                            function selectScope(val){
+                                cadena="";
+                                if(id_selectScope == 0){
+                                    if(val == 'Todos'){
+                                        cadena += '<option>Local</option>';
+                                        cadena += '<option>Regional</option>';
+                                        cadena += '<option>Nacional</option>';
+                                    }
+                                    else if (val == 'Local'){
+                                        cadena += '<option>Regional</option>';
+                                        cadena += '<option>Nacional</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Regional'){
+                                        cadena += '<option>Nacional</option>';
+                                        cadena += '<option>Local</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Nacional'){
+                                        cadena += '<option>Local</option>';
+                                        cadena += '<option>Regional</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    $("#scope").append(cadena);
+                                    id_selectScope++;
+                                }
+                            }
+                        </script>        
                     </div>
                     <div class="col-md-2 form-group">
                         <label class="text-light" for="">¿Medio?</label>
                         <select name="media_type" id="media_type" class="form-control bg-dark text-light" onclick="selectMedia('{{data_body.media_type}}')">
                             <option >{{data_body.media_type}}</option>
-                        </select>         
+                        </select> 
+                         <script>
+                            var id_selectMedia = 0
+                            function selectMedia(val){
+                                cadena="";
+                                if(id_selectMedia == 0){
+                                    if(val == 'Todos'){
+                                        cadena += '<option>Medios radiales</option>';
+                                        cadena += '<option>Medios escritos</option>';
+                                        cadena += '<option>TV</option>';
+                                        cadena += '<option>Redes sociales</option>';
+                                    }
+                                    else if (val == 'Medios radiales'){
+                                        cadena += '<option>Medios escritos</option>';
+                                        cadena += '<option>TV</option>';
+                                        cadena += '<option>Redes sociales</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Medios escritos'){
+                                        cadena += '<option>TV</option>';
+                                        cadena += '<option>Redes sociales</option>';
+                                        cadena += '<option>Medios radiales</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'TV'){
+                                        cadena += '<option>Redes sociales</option>';
+                                        cadena += '<option>Medios radiales</option>';
+                                        cadena += '<option>Medios escritos</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    else if (val == 'Redes sociales'){
+                                        cadena += '<option>Medios radiales</option>';
+                                        cadena += '<option>Medios escritos</option>';
+                                        cadena += '<option>TV</option>';
+                                        cadena += '<option>Todos</option>';
+                                    }
+                                    $("#media_type").append(cadena);
+                                    id_selectMedia++;
+                                }
+                            }
+                        </script>         
                     </div>  
                 </div>
             </form>
@@ -81,28 +181,28 @@
                         <label class="text-light" for="">¿Impacto?</label>
                         <select name="impact" class="form-control bg-dark text-light">
                             <option select>Todos</option>
-                            <option value="1">Informativo</option>
-                            <option value="2">Positivo</option>
-                            <option value="3">Negativo</option>
+                            <option>Informativo</option>
+                            <option>Positivo</option>
+                            <option>Negativo</option>
                         </select>
                     </div>
                     <div class="col-md-2 form-group">
                         <label class="text-light" for="">¿Alcance?</label>
                         <select name="scope" class="form-control bg-dark text-light">
                             <option select>Todos</option>
-                            <option value="1">Local</option>
-                            <option value="2">Regional</option>
-                            <option value="3">Nacional</option>
+                            <option>Local</option>
+                            <option>Regional</option>
+                            <option>Nacional</option>
                         </select>         
                     </div>
                     <div class="col-md-2 form-group">
                         <label class="text-light" for="">¿Medio?</label>
                         <select name="media_type" class="form-control bg-dark text-light">
-                            <option select >Todos</option>
-                            <option value="1">Medios radiales</option>
-                            <option value="2">Medios escritos</option>
-                            <option value="3">TV</option>
-                            <option value="4">Redes sociales</option>
+                            <option select>Todos</option>
+                            <option>Medios radiales</option>
+                            <option>Medios escritos</option>
+                            <option>TV</option>
+                            <option>Redes sociales</option>
                         </select>         
                     </div>  
                 </div>

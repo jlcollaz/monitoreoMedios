@@ -11,8 +11,38 @@
                         <div class="form-group">
                             <label class="text-light" for="">¿Tipo de medio?</label>
                             <select name="media_type" id="media_type2" class="form-control bg-dark text-light" onclick="selectMedia2('{{data_body.type}}')">
-                                <option >{{data_body.type}}</option>
-                            </select>    
+                                <option>{{data_body.type}}</option>
+                            </select>
+                            <script>
+                                var id_selectMedia2 = 0
+                                function selectMedia2(val){
+                                    cadena="";
+                                    if(id_selectMedia2 == 0){
+                                        if (val == 'Medios radiales'){
+                                            cadena += '<option>Medios escritos</option>';
+                                            cadena += '<option>TV</option>';
+                                            cadena += '<option>Redes sociales</option>';
+                                        }
+                                        else if (val == 'Medios escritos'){
+                                            cadena += '<option>TV</option>';
+                                            cadena += '<option>Redes sociales</option>';
+                                            cadena += '<option>Medios radiales</option>';
+                                        }
+                                        else if (val == 'TV'){
+                                            cadena += '<option>Redes sociales</option>';
+                                            cadena += '<option>Medios radiales</option>';
+                                            cadena += '<option>Medios escritos</option>';
+                                        }
+                                        else if (val == 'Redes sociales'){
+                                            cadena += '<option>Medios radiales</option>';
+                                            cadena += '<option>Medios escritos</option>';
+                                            cadena += '<option>TV</option>';
+                                        }
+                                        $("#media_type2").append(cadena);
+                                        id_selectMedia2++;
+                                    }
+                                }
+                            </script>    
                         </div>
                         <div class="form-group">
                             <label class="text-light" for="">Título</label>
@@ -23,12 +53,56 @@
                             <select name="impact" id="impact2" class="form-control bg-dark text-light" onclick="selectImpact2('{{data_body.impact}}')">
                                 <option >{{data_body.impact}}</option>
                             </select>
+                            <script>
+                                var id_selectImpact2 = 0
+                                function selectImpact2(val){
+                                    cadena="";
+                                    if(id_selectImpact2 == 0){
+                                        if (val == 'Informativo'){
+                                            cadena += '<option>Positivo</option>';
+                                            cadena += '<option>Negativo</option>';
+                                        }
+                                        else if (val == 'Positivo'){
+                                            cadena += '<option>Negativo</option>';
+                                            cadena += '<option>Informativo</option>';
+                                        }
+                                        else if (val == 'Negativo'){
+                                            cadena += '<option>Informativo</option>';
+                                            cadena += '<option>Positivo</option>';
+                                        }
+                                        $("#impact2").append(cadena);
+                                        id_selectImpact2++;
+                                    }
+                                }
+                            </script> 
                         </div>
                         <div class="form-group">
                             <label class="text-light" for="">¿Alcance?</label>
                             <select name="scope" id="scope2" class="form-control bg-dark text-light" onclick="selectScope2('{{data_body.scope}}')">
                                 <option >{{data_body.scope}}</option>
-                            </select>   
+                            </select> 
+                            <script>
+                                var id_selectScope2 = 0
+                                function selectScope2(val){
+                                    cadena="";
+                                    if(id_selectScope2 == 0){
+                                        if (val == 'Local'){
+                                            cadena += '<option>Regional</option>';
+                                            cadena += '<option>Nacional</option>';
+                                        }
+                                        else if (val == 'Regional'){
+                                            cadena += '<option>Nacional</option>';
+                                            cadena += '<option>Local</option>';
+                                        }
+                                        else if (val == 'Nacional'){
+                                            cadena += '<option>Local</option>';
+                                            cadena += '<option>Regional</option>';
+                                        }
+                                        $("#scope2").append(cadena);
+                                        id_selectScope2++;
+                                    }
+                                }
+                            </script>   
                         </div>
                         <div class="form-group">
                             <label class="text-light" for="">URL</label>

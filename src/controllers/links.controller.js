@@ -17,44 +17,47 @@ const upload = multer({
 })
 export const upload_file = upload.single('file_news')
 
+export const canvas = async (req, res, next) => {
+  const data = await pool.query("select date_format(links.date, '%M'),sum(links.count_id) from links group by date_format(links.date, '%M');");
+  console.log(data);
+  res.send(data);
+}
+
 export const filter_news = async (req, res) => {
-  if (req.impact != 'Todos' && req.scope != 'Todos' && req.media_type != 'Todos'){
-    var data_body = req.body;
-    //impact
-    if(data_body.impact == 1){
-      data_body.impact = 'Informativo'
-    }
-    else if(data_body.impact == 2){
-      data_body.impact = 'Positivo'
-    }
-    else if(data_body.impact == 3){
-      data_body.impact = 'Negativo'
-    }
-    //scope
-    if(data_body.scope == 1){
-      data_body.scope = 'Local'
-    }
-    else if(data_body.scope == 2){
-      data_body.scope = 'Regional'
-    }
-    else if(data_body.scope == 3){
-      data_body.scope = 'Nacional'
-    }
-    //media_type
-    if(data_body.media_type == 1){
-      data_body.media_type = 'Medios radiales'
-    }
-    else if(data_body.media_type == 2){
-      data_body.media_type = 'Medios escritos'
-    }
-    else if(data_body.media_type == 3){
-      data_body.media_type = 'TV'
-    }
-    else if(data_body.media_type == 4){
-      data_body.media_type = 'Redes sociales'
-    }
-    const links = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' ORDER BY links.date desc;");
-    res.render("links/list", { links, data_body});
+  console.log(req.body)
+  var data_body = req.body;
+  console.log(data_body)
+  if (req.body.impact == 'Todos' && req.body.scope == 'Todos' && req.body.media_type == 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact != 'Todos' && req.body.scope != 'Todos' && req.body.media_type == 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND impact = '" + req.body.impact + "' AND scope = '" + req.body.scope + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact != 'Todos' && req.body.scope == 'Todos' && req.body.media_type != 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND impact = '" + req.body.impact + "' AND type = '" + req.body.media_type + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact != 'Todos' && req.body.scope == 'Todos' && req.body.media_type == 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND impact = '" + req.body.impact + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact == 'Todos' && req.body.scope != 'Todos' && req.body.media_type != 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND scope = '" + req.body.scope + "' AND type = '" + req.body.media_type + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact == 'Todos' && req.body.scope != 'Todos' && req.body.media_type == 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND scope = '" + req.body.scope + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact == 'Todos' && req.body.scope == 'Todos' && req.body.media_type != 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND type = '" + req.body.media_type + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
+  }
+  else if (req.body.impact != 'Todos' && req.body.scope != 'Todos' && req.body.media_type != 'Todos'){   
+    const links2 = await pool.query("SELECT * FROM links WHERE links.date >= '" + req.body.start_day + "' AND links.date <= '" + req.body.end_day + "' AND impact = '" + req.body.impact + "' AND scope = '" + req.body.scope + "' AND type = '" + req.body.media_type + "' ORDER BY links.date desc;");
+    res.render("links/list", { links2, data_body});
   }
 };
 
@@ -97,8 +100,8 @@ export const addLink = async (req, res) => {
 
 export const renderLinks = async (req, res) => {
   const links = await pool.query("SELECT * from links ORDER BY links.date desc;");
-  // const links = await pool.query("SELECT * from links where links.date LIKE CURDATE() ORDER BY links.date desc;");
-  res.render("links/list", { links });
+  const links2 = await pool.query("SELECT * from links where links.date LIKE CURDATE() ORDER BY links.date desc;");
+  res.render("links/list", { links, links2 });
 };
 
 export const deleteLink = async (req, res) => {
@@ -112,49 +115,17 @@ export const renderEditLink = async (req, res) => {
   const { id } = req.params;
   const links = await pool.query("SELECT * FROM links WHERE id = ?", [id]);
   var data_body = links[0];
-    //impact
-    if(data_body.impact == 1){
-      data_body.impact = 'Informativo'
-    }
-    else if(data_body.impact == 2){
-      data_body.impact = 'Positivo'
-    }
-    else if(data_body.impact == 3){
-      data_body.impact = 'Negativo'
-    }
-    //scope
-    if(data_body.scope == 1){
-      data_body.scope = 'Local'
-    }
-    else if(data_body.scope == 2){
-      data_body.scope = 'Regional'
-    }
-    else if(data_body.scope == 3){
-      data_body.scope = 'Nacional'
-    }
-    //media_type
-    if(data_body.type == 1){
-      data_body.type = 'Medios radiales'
-    }
-    else if(data_body.type == 2){
-      data_body.type = 'Medios escritos'
-    }
-    else if(data_body.type == 3){
-      data_body.type = 'TV'
-    }
-    else if(data_body.type == 4){
-      data_body.type = 'Redes sociales'
-    }
   console.log(data_body);
   res.render("links/edit", { link: links[0], data_body});
 };
 
 export const editLink = async (req, res) => {
   const { id } = req.params;
-  const { date, type, title, impact, scope, url, description} = req.body;
+  const { date, media_type, title, impact, scope, url, description} = req.body;
+  console.log(req.body);
 
-  const newLink = {date, type, title, impact, scope, url, description};
-  const newLink2 = {date, type, title, impact, scope, url, description, file: filenamegl};
+  const newLink = {date, type: media_type, title, impact, scope, url, description};
+  const newLink2 = {date, type: media_type, title, impact, scope, url, description, file: filenamegl};
 
   if(filenamegl){
     await pool.query("UPDATE links set ? WHERE id = ?", [newLink2, id]);
