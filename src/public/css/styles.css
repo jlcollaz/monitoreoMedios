@@ -1,20 +1,20 @@
 body {
-  background: #141518;
+  background: #102d65;
   font-family: "Oswald", sans-serif;
 }
 
 .index {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .navbar {
-  background: black !important;
+  background-color: #fff;
 }
 
 .nav-link {
-  color: #fff !important;
-}
+  color: #000000 !important;
+} 
 
 .masthead {
   color: white;
@@ -23,7 +23,7 @@ body {
   height: 100%;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: url("/img/background.jpeg");
+  background: url("/img/back.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,7 +53,21 @@ more-padding {
   margin: 20px;
 }
 
-.list_news {
-  height: 500px;
-  overflow-y: scroll;
+
+
+#logo-nav {
+  height: 60px;
+}
+
+.cardcolor {
+  background-color: #17283b;
+}
+
+.btn-erase {
+  background-color: #cd9a03;
+  border-color: #cd9a03;
+}
+
+.btn-start {
+  background-color: #cd9a03;
 }
