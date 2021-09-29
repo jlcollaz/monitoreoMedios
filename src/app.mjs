@@ -8,12 +8,15 @@ import flash from "connect-flash";
 import expressMySQLSession from "express-mysql-session";
 import config from "./config";
 import routes from "./routes";
+import partials from "express-partials";
 import "./lib/passport";
 
 // Intializations
 const MySQLStore = expressMySQLSession(session);
 const { database, port } = config;
 const app = express();
+
+app.use(partials());
 
 // Settings
 app.set("port", port);

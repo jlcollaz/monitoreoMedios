@@ -10,9 +10,8 @@
                                 {{title}}
                             </h3>
                         </a>
-                        <p class="m-2">{{description}}</p>
                         <p class="text-muted">
-                            {{timeago created_at}}
+                            {{timeago date}}
                         </p>
                         <a class="btn btn-danger" href="/links/delete/{{id}}">
                             Eliminar
@@ -36,45 +35,79 @@
     
 {{else}}
     <div class="container p-4">
-        <form onchange="form_submit()" action="/links/filter" method="post" id="theForm">
-            <div class="row">
-                <div class="col-md-2 form-group">
-                    <label class="text-light" for="">Fecha de inicio</label>
-                    <input type="date" id="current_date" name="start_day" class="form-control bg-dark text-light" onchange="|">
+        {{#if data_body}}
+            <form onchange="form_submit()" action="/links/filter" method="post" id="theForm">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">Fecha de inicio</label>
+                        <input type="date" id="filter_date" name="start_day" class="form-control bg-dark text-light" value="{{data_body.start_day}}">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">Fecha de fin</label>
+                        <input type="date" id="filter_date2" name="end_day" class="form-control bg-dark text-light" value="{{data_body.end_day}}">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Impacto?</label>
+                        <select name="impact" id="impact" class="form-control bg-dark text-light" onclick="selectImpact('{{data_body.impact}}')">
+                            <option >{{data_body.impact}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Alcance?</label>
+                        <select name="scope" id="scope" class="form-control bg-dark text-light" onclick="selectScope('{{data_body.scope}}')">
+                            <option >{{data_body.scope}}</option>
+                        </select>         
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Medio?</label>
+                        <select name="media_type" id="media_type" class="form-control bg-dark text-light" onclick="selectMedia('{{data_body.media_type}}')">
+                            <option >{{data_body.media_type}}</option>
+                        </select>         
+                    </div>  
                 </div>
-                <div class="col-md-2 form-group">
-                    <label class="text-light" for="">Fecha de fin</label>
-                    <input type="date" id="current_date2" name="end_day" class="form-control bg-dark text-light">
+            </form>
+        {{else}}
+            <form onchange="form_submit()" action="/links/filter" method="post" id="theForm">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">Fecha de inicio</label>
+                        <input type="date" id="current_date" name="start_day" class="form-control bg-dark text-light" onchange="|">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">Fecha de fin</label>
+                        <input type="date" id="current_date2" name="end_day" class="form-control bg-dark text-light">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Impacto?</label>
+                        <select name="impact" class="form-control bg-dark text-light">
+                            <option select>Todos</option>
+                            <option value="1">Informativo</option>
+                            <option value="2">Positivo</option>
+                            <option value="3">Negativo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Alcance?</label>
+                        <select name="scope" class="form-control bg-dark text-light">
+                            <option select>Todos</option>
+                            <option value="1">Local</option>
+                            <option value="2">Regional</option>
+                            <option value="3">Nacional</option>
+                        </select>         
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="text-light" for="">¿Medio?</label>
+                        <select name="media_type" class="form-control bg-dark text-light">
+                            <option select >Todos</option>
+                            <option value="1">Medios radiales</option>
+                            <option value="2">Medios escritos</option>
+                            <option value="3">TV</option>
+                            <option value="4">Redes sociales</option>
+                        </select>         
+                    </div>  
                 </div>
-                <div class="col-md-2 form-group">
-                    <label class="text-light" for="">¿Impacto?</label>
-                    <select name="impact" class="form-control bg-dark text-light">
-                        <option select>Todos</option>
-                        <option value="1">Informativo</option>
-                        <option value="2">Positivo</option>
-                        <option value="3">Negativo</option>
-                    </select>
-                </div>
-                <div class="col-md-2 form-group">
-                    <label class="text-light" for="">¿Alcance?</label>
-                    <select name="scope" class="form-control bg-dark text-light">
-                        <option select>Todos</option>
-                        <option value="1">Local</option>
-                        <option value="2">Regional</option>
-                        <option value="3">Nacional</option>
-                    </select>         
-                </div>
-                <div class="col-md-2 form-group">
-                    <label class="text-light" for="">¿Medio?</label>
-                    <select name="media_type" class="form-control bg-dark text-light">
-                        <option select>Todos</option>
-                        <option value="1">Blog</option>
-                        <option value="2">Escrito</option>
-                        <option value="3">Podcast</option>
-                    </select>         
-                </div>  
-            </div>
-        </form>
+            </form>
+        {{/if}}
         <div class="row">
             <div class="col-md-8 list_news">
                 {{>news}}

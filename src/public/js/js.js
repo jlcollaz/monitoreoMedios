@@ -14,14 +14,16 @@ function getDate() {
 
   today = yyyy + '-' + mm + '-' + dd;
   console.log(today);
-  document.getElementById("current_date").value = today;
-  document.getElementById("current_date2").value = today;
+  try {
+    document.getElementById("current_date").value = today;
+    document.getElementById("current_date2").value = today;
+  } catch (e) {
+  }
 }
-  
+
 function form_submit(){
   document.getElementById('theForm').submit();
 }
-
 
 window.onload = function() {
   getDate();

@@ -1,30 +1,41 @@
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-6 mx-auto">
             <div class="card bg-dark border border-dark">
                 <div class="card-body">
                     <form action="/links/edit/{{link.id}}" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="date" name="date" id="current_date" class="form-control bg-dark text-light">
+                            <label class="text-light" for="">Fecha</label>
+                            <input type="date" id="current_date" name="date" class="form-control bg-dark text-light">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="type" class="form-control bg-dark text-light" placeholder="Tipo" value="{{link.type}}" autofocus>
+                            <label class="text-light" for="">¿Tipo de medio?</label>
+                            <select name="media_type" id="media_type2" class="form-control bg-dark text-light" onclick="selectMedia2('{{data_body.type}}')">
+                                <option >{{data_body.type}}</option>
+                            </select>    
                         </div>
                         <div class="form-group">
+                            <label class="text-light" for="">Título</label>
                             <input type="text" name="title" class="form-control bg-dark text-light" placeholder="Título" value="{{link.title}}" required>
                         </div>
                         <div class="form-group">
-                            <select name="impact" class="form-control bg-dark text-light">
-                                <option select>¿Impacto?</option>
-                                <option value="1">Informativo</option>
-                                <option value="2">Positivo</option>
-                                <option value="3">Negativo</option>
+                            <label class="text-light" for="">¿Impacto?</label>
+                            <select name="impact" id="impact2" class="form-control bg-dark text-light" onclick="selectImpact2('{{data_body.impact}}')">
+                                <option >{{data_body.impact}}</option>
                             </select>
                         </div>
                         <div class="form-group">
+                            <label class="text-light" for="">¿Alcance?</label>
+                            <select name="scope" id="scope2" class="form-control bg-dark text-light" onclick="selectScope2('{{data_body.scope}}')">
+                                <option >{{data_body.scope}}</option>
+                            </select>   
+                        </div>
+                        <div class="form-group">
+                            <label class="text-light" for="">URL</label>
                             <input type="url" name="url" class="form-control bg-dark text-light" placeholder="URL" value="{{link.url}}" required>
                         </div>
                         <div class="form-group">
+                            <label class="text-light" for="">Descripción</label>
                             <textarea name="description" rows="2" class="form-control bg-dark text-light"
                                 placeholder="Descripción" required>{{link.description}}</textarea>
                         </div>
