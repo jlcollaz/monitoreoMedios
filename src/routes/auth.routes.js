@@ -7,6 +7,7 @@ import {
   renderSignIn,
   signIn,
   logout,
+  getCanvas,
 } from "../controllers/auth.controller";
 
 // SIGNUP
@@ -18,5 +19,7 @@ router.get("/signin", renderSignIn);
 router.post("/signin", signIn);
 
 router.get("/logout", logout);
+
+router.get("/canvas", getCanvas);
 
 export default router;

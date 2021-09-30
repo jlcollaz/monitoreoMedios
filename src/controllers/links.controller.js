@@ -17,12 +17,6 @@ const upload = multer({
 })
 export const upload_file = upload.single('file_news')
 
-export const canvas = async (req, res, next) => {
-  const data = await pool.query("select date_format(links.date, '%M'),sum(links.count_id) from links group by date_format(links.date, '%M');");
-  console.log(data);
-  res.send(data);
-}
-
 export const filter_news = async (req, res) => {
   console.log(req.body)
   var data_body = req.body;
